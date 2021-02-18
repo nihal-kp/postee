@@ -25,9 +25,9 @@
             @if ($posts->count())
             @foreach ($posts as $post)
                 <div class="mb-4">
-                    <a href="{{ route('users.posts',$post->user) }}">{{ $post->user->name }}</a>          {{-- To print or access 'User' model's correspondng 'name' property ('users' table's 'name' column) in 'Post' model iteration, first make belongsTo relationship in 'Post' model(ie., 'Post' belongsTo 'User')  --}}
-                    <p>Posted date: {{ $post->created_at->diffForHumans() }}</p>       {{-- diffForHumans() is a method to show '5 minutes ago, 1 hours ago, 2 years ago etc.. like that' --}}
-                    <p>Posted comment: {{ $post->body }}</p>
+                    <a href="{{ route('users.posts',$post->user) }}" class="font-bold">{{ $post->user->name }}</a>          {{-- To print or access 'User' model's correspondng 'name' property ('users' table's 'name' column) in 'Post' model iteration, first make belongsTo relationship in 'Post' model(ie., 'Post' belongsTo 'User')  --}}
+                    <span class="text-gray-600 text-sm">{{ $post->created_at->diffForHumans() }}</span>       {{-- diffForHumans() is a method to show '5 minutes ago, 1 hours ago, 2 years ago etc.. like that' --}}
+                    <p class="mb-2">{{ $post->body }}</p>
                     @if ($post->ownedBy(Auth::user()))                  {{-- This ownedBy() function is created in Post model. If particular post is owned by currently authenticated user then only returns this 'Delete Post' button. Otherwise not shows this 'Delete Post' button--}}
                         <div>
                             <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
