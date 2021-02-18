@@ -46,8 +46,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+    public function receivedLikes()                 //This function is called in users\posts\index.blade.php
+    {
+        return $this->hasManyThrough(Like::class, Post::class);     //User has many Likes through many Posts.
     }
 }

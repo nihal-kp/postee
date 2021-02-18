@@ -26,11 +26,12 @@ Route::get('/', function () {
 Route::post('/logout',[LogoutController::class, 'store'])->name('logout');
 Route::get('/login',[LoginController::class, 'index'])->name('login');                   //set ->middleware('guest') or other way is set middleware('auth') in LoginController
 Route::post('/login',[LoginController::class, 'store']);                                 //->middleware('guest') or other way is set middleware('auth') in LoginController
-Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');       //->middleware('auth')  or other way is set middleware('auth') in DashboardController
 Route::get('/register',[RegisterController::class, 'index'])->name('register');          //->middleware('guest') or other way is set middleware('auth') in RegisterController
 Route::post('/register',[RegisterController::class, 'store']);                           //->middleware('guest') or other way is set middleware('auth') in RegisterController
+Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard');       //->middleware('auth')  or other way is set middleware('auth') in DashboardController
 
 Route::get('/posts',[PostController::class, 'index'])->name('posts');
+Route::get('/posts/{post}',[PostController::class, 'show'])->name('posts.show');
 Route::post('/posts',[PostController::class, 'store']);
 Route::delete('/posts/{post}',[PostController::class, 'destroy'])->name('posts.destroy');        //{post} means route model binding //{post} Shows corresponding ID in URL
 

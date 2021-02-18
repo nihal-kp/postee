@@ -32,10 +32,17 @@ class PostController extends Controller
         return back();
     }
 
-    public function destroy(Post $post, Request $request)           //(Post $post) means route model binding
+    public function destroy(Post $post, Request $request)           //(Post $post) means destroy function takes $post via route model binding
     {
         //dd($post);
         $post->delete();
         return back();
+    }
+
+    public function show(Post $post)
+    {
+        return view('posts.show', [
+            'post' => $post
+        ]);
     }
 }
